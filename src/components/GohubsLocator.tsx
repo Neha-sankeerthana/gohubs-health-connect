@@ -24,6 +24,7 @@ interface GohubsCenter {
   lng: number;
   phone: string;
   services: string[];
+  distance?: number;
 }
 
 // Mock GOHUBS centers near Visakhapatnam
@@ -100,7 +101,7 @@ const GohubsLocator = () => {
     }));
     
     return centersWithDistance
-      .sort((a, b) => a.distance - b.distance)
+      .sort((a, b) => a.distance! - b.distance!)
       .slice(0, 4); // Show top 4 nearest centers
   };
 
