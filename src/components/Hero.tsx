@@ -36,7 +36,6 @@ const Hero = () => {
           </Link>
         </div>
 
-        {/* New GOHUBS Locator */}
         <div className="mb-8">
           <GohubsLocator />
         </div>

@@ -27,14 +27,14 @@ interface GohubsCenter {
   distance?: number;
 }
 
-// Mock GOHUBS centers near Visakhapatnam
+// Mock GOHUBS centers in remote villages near Visakhapatnam
 const gohubsCenters: GohubsCenter[] = [
   {
     id: '1',
-    name: 'GOHUBS Visakhapatnam Central',
-    address: 'MVP Colony, Visakhapatnam, Andhra Pradesh 530017',
-    lat: 17.7231,
-    lng: 83.3077,
+    name: 'GOHUBS Kondakarla',
+    address: 'Village Center, Kondakarla, Visakhapatnam District',
+    lat: 17.8231,
+    lng: 83.1077,
     phone: '+91 91828 48430',
     services: ['Emergency Care', 'General Consultation', 'Maternal Care']
   },
@@ -64,6 +64,24 @@ const gohubsCenters: GohubsCenter[] = [
     lng: 82.8664,
     phone: '+91 91828 48433',
     services: ['Mobile Clinic', 'Emergency Response', 'Community Health']
+  },
+  {
+    id: '5',
+    name: 'GOHUBS Chodavaram',
+    address: 'Rural Center, Chodavaram, Visakhapatnam District',
+    lat: 17.8300,
+    lng: 82.9400,
+    phone: '+91 91828 48434',
+    services: ['Primary Healthcare', 'Women & Child Care', 'Health Education']
+  },
+  {
+    id: '6',
+    name: 'GOHUBS Paderu',
+    address: 'Tribal Area Center, Paderu, Visakhapatnam District',
+    lat: 18.0833,
+    lng: 82.6500,
+    phone: '+91 91828 48435',
+    services: ['Tribal Healthcare', 'Mobile Medical Units', 'Nutrition Programs']
   }
 ];
 
@@ -135,7 +153,7 @@ const GohubsLocator = () => {
         } else {
           toast({
             title: "Service not available",
-            description: "GOHUBS services are currently available only in rural areas near Visakhapatnam.",
+            description: "GOHUBS services are currently available only in remote villages near Visakhapatnam.",
             variant: "destructive"
           });
         }
