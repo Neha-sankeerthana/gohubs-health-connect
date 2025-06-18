@@ -1,9 +1,16 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
+import OnlineConsultation from '@/components/services/OnlineConsultation';
+import AmbulanceService from '@/components/services/AmbulanceService';
+import NearestHospitals from '@/components/services/NearestHospitals';
+import HealthAwareness from '@/components/services/HealthAwareness';
+import AppointmentBooking from '@/components/services/AppointmentBooking';
+import MaternalCare from '@/components/services/MaternalCare';
+import TelemedicineSupport from '@/components/services/TelemedicineSupport';
 import { 
   Heart, 
   Phone, 
@@ -12,56 +19,85 @@ import {
   Calendar, 
   Baby, 
   Monitor,
-  Clock,
-  Shield,
-  Users
+  ArrowLeft
 } from 'lucide-react';
 
 const Services = () => {
+  const [activeService, setActiveService] = useState<string | null>(null);
+
   const services = [
     {
+      id: 'consultation',
       icon: Heart,
       title: "Online Health Consultation",
       description: "Connect with certified doctors through video calls, chat, or phone consultations. Get medical advice, prescriptions, and follow-up care from licensed healthcare professionals.",
-      features: ["Video Consultations", "Instant Chat", "Digital Prescriptions", "Follow-up Care"]
+      component: <OnlineConsultation />
     },
     {
+      id: 'ambulance',
       icon: Phone,
       title: "24/7 Ambulance Service (Fully Equipped)",
       description: "Emergency ambulance services available round the clock with advanced life support equipment, trained paramedics, and GPS tracking for fastest response times.",
-      features: ["Advanced Life Support", "Trained Paramedics", "GPS Tracking", "24/7 Availability"]
+      component: <AmbulanceService />
     },
     {
+      id: 'hospitals',
       icon: MapPin,
       title: "Find Nearest Hospitals",
       description: "Locate the closest healthcare facilities based on your location. Get directions, contact information, and real-time availability of services.",
-      features: ["Real-time Location", "Hospital Directory", "Service Availability", "Navigation Support"]
+      component: <NearestHospitals />
     },
     {
+      id: 'awareness',
       icon: BookOpen,
       title: "Health Awareness",
       description: "Educational programs, health tips, preventive care information, and wellness content to help you maintain a healthy lifestyle.",
-      features: ["Health Education", "Preventive Care", "Wellness Tips", "Regular Updates"]
+      component: <HealthAwareness />
     },
     {
+      id: 'appointments',
       icon: Calendar,
       title: "Offline Appointment Booking in Hospitals",
       description: "Schedule appointments with specialists and general practitioners at partner hospitals. Choose convenient time slots and receive confirmation.",
-      features: ["Specialist Booking", "Time Slot Selection", "Instant Confirmation", "Reminder Notifications"]
+      component: <AppointmentBooking />
     },
     {
+      id: 'maternal',
       icon: Baby,
       title: "Maternal Care Offered by Offline GOHUB Centre",
       description: "Comprehensive maternal healthcare services including prenatal care, postnatal support, nutrition guidance, and infant care at our physical centers.",
-      features: ["Prenatal Care", "Postnatal Support", "Nutrition Guidance", "Infant Care"]
+      component: <MaternalCare />
     },
     {
+      id: 'telemedicine',
       icon: Monitor,
       title: "Telemedicine Support",
       description: "Remote monitoring, digital health records, medication reminders, and continuous care coordination for chronic conditions and ongoing treatments.",
-      features: ["Remote Monitoring", "Digital Records", "Medication Reminders", "Care Coordination"]
+      component: <TelemedicineSupport />
     }
   ];
+
+  if (activeService) {
+    const service = services.find(s => s.id === activeService);
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="py-8 px-4">
+          <div className="max-w-6xl mx-auto">
+            <Button 
+              onClick={() => setActiveService(null)}
+              variant="outline"
+              className="mb-6"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to All Services
+            </Button>
+            {service?.component}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -80,7 +116,7 @@ const Services = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
+              <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg cursor-pointer" onClick={() => setActiveService(service.id)}>
                 <CardHeader className="pb-4">
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="bg-blue-100 p-3 rounded-lg">
@@ -93,19 +129,8 @@ const Services = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm text-gray-700">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="text-sm text-gray-600 flex items-center">
-                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
-                    Get Started
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    Access Service
                   </Button>
                 </CardContent>
               </Card>
