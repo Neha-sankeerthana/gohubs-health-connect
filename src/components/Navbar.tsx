@@ -1,20 +1,29 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const handleEmergencyCall = () => {
     window.location.href = 'tel:+919182848430';
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
   };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          {/* Logo - Now clickable */}
+          <div 
+            onClick={handleLogoClick}
+            className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+          >
             <div className="bg-blue-600 text-white rounded-full p-2">
               <span className="font-bold text-lg">G</span>
             </div>
@@ -22,7 +31,7 @@ const Navbar = () => {
               <h1 className="text-xl font-bold text-blue-900">GOHUBS</h1>
               <p className="text-xs text-gray-600">Going With Health Hubs</p>
             </div>
-          </Link>
+          </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-6">
