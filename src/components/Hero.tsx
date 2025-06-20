@@ -25,12 +25,12 @@ const Hero = () => {
               EXPLORE SERVICES
             </Button>
           </Link>
-          <Link to="/about">
+          <Link to="/auth?tab=signup">
             <Button 
               size="lg" 
               className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 text-lg transition-all hover:scale-105"
             >
-              LEARN MORE
+              JOIN NOW
             </Button>
           </Link>
         </div>
@@ -38,14 +38,6 @@ const Hero = () => {
         <div className="mt-12 animate-bounce">
           <ArrowDown className="mx-auto h-8 w-8 text-white opacity-70" />
         </div>
-      </div>
-      
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-white rounded-full"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-white rounded-full"></div>
-        <div className="absolute bottom-40 right-1/3 w-24 h-24 bg-white rounded-full"></div>
       </div>
     </section>
   );
