@@ -17,7 +17,7 @@ const Hero = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <Link to="/auth">
+          <Link to="/auth?tab=signup">
             <Button 
               size="lg" 
               className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 text-lg transition-all hover:scale-105"

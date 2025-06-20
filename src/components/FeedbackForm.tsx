@@ -37,7 +37,8 @@ const FeedbackForm = ({ isOpen, onClose }: FeedbackFormProps) => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
+      // Insert feedback into database
+      const { error: insertError } = await supabase
         .from('feedback')
         .insert([
           {
@@ -47,13 +48,35 @@ const FeedbackForm = ({ isOpen, onClose }: FeedbackFormProps) => {
           }
         ]);
 
-      if (error) {
-        throw error;
+      if (insertError) {
+        throw insertError;
+      }
+
+      // Send confirmation email if email was provided
+      if (data.email) {
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-feedback-email', {
+            body: {
+              name: data.user_name,
+              email: data.email
+            }
+          });
+
+          if (emailError) {
+            console.error('Email sending failed:', emailError);
+            // Don't throw error for email failure - feedback was still saved
+          }
+        } catch (emailError) {
+          console.error('Email sending failed:', emailError);
+          // Don't throw error for email failure - feedback was still saved
+        }
       }
 
       toast({
         title: "Thank you for your feedback!",
-        description: "Your message has been submitted successfully.",
+        description: data.email 
+          ? "Your message has been submitted successfully. Check your email for confirmation." 
+          : "Your message has been submitted successfully.",
       });
 
       form.reset();

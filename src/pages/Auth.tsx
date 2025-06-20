@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,9 +11,18 @@ import Navbar from '@/components/Navbar';
 
 const Auth = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [showEmailConfirmation, setShowEmailConfirmation] = useState(false);
   const [userEmail, setUserEmail] = useState('');
+  const [activeTab, setActiveTab] = useState('login');
+
+  useEffect(() => {
+    // Check if we should default to signup tab
+    if (searchParams.get('tab') === 'signup') {
+      setActiveTab('signup');
+    }
+  }, [searchParams]);
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -159,7 +167,7 @@ const Auth = () => {
             <p className="text-gray-600">Your healthcare journey starts here</p>
           </div>
 
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
