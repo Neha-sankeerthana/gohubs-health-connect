@@ -1,9 +1,13 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
+import FeedbackForm from '@/components/FeedbackForm';
+import { MessageCircle } from 'lucide-react';
 
 const About = () => {
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+
   const founders = [
     {
       name: "Neha Sankeerthana Tadi",
@@ -132,6 +136,25 @@ const About = () => {
             </p>
           </div>
         </section>
+
+        {/* Feedback Button Section */}
+        <section className="text-center mt-16 mb-8">
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-2xl font-bold text-blue-900 mb-4">
+              We Value Your Opinion
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Help us improve GOHUBS by sharing your thoughts and suggestions.
+            </p>
+            <Button 
+              onClick={() => setIsFeedbackOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg flex items-center gap-2 mx-auto"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Share Feedback
+            </Button>
+          </div>
+        </section>
       </div>
       
       {/* Footer */}
@@ -142,6 +165,12 @@ const About = () => {
           <p className="text-sm text-blue-300">© 2024 GOHUBS. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Feedback Form Modal */}
+      <FeedbackForm 
+        isOpen={isFeedbackOpen} 
+        onClose={() => setIsFeedbackOpen(false)} 
+      />
     </div>
   );
 };
