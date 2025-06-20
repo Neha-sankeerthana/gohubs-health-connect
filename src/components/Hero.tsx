@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
-import GohubsLocator from './GohubsLocator';
 
 const Hero = () => {
   return (
@@ -17,27 +16,23 @@ const Hero = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <Link to="/auth?tab=signup">
-            <Button 
-              size="lg" 
-              className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 text-lg transition-all hover:scale-105"
-            >
-              JOIN NOW
-            </Button>
-          </Link>
           <Link to="/services">
             <Button 
               size="lg" 
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 text-lg transition-all hover:scale-105"
             >
-              SERVICES
+              EXPLORE SERVICES
             </Button>
           </Link>
-        </div>
-
-        <div className="mb-8">
-          <GohubsLocator />
+          <Link to="/about">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 text-lg transition-all hover:scale-105"
+            >
+              LEARN MORE
+            </Button>
+          </Link>
         </div>
         
         <div className="mt-12 animate-bounce">
