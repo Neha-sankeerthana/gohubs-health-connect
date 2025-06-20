@@ -7,11 +7,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
 
 const Auth = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showEmailConfirmation, setShowEmailConfirmation] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,16 +28,42 @@ const Auth = () => {
       password: formData.get('password') as string,
     };
 
-    // Simulate API call
-    setTimeout(() => {
-      localStorage.setItem('user', JSON.stringify(userData));
-      toast({
-        title: "Account created successfully!",
-        description: "Welcome to GOHUBS. You can now access all our services.",
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: userData.email,
+        password: userData.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+          data: {
+            full_name: userData.name,
+            phone: userData.phone,
+          }
+        }
       });
+
+      if (error) {
+        toast({
+          title: "Signup failed",
+          description: error.message,
+          variant: "destructive"
+        });
+      } else {
+        setUserEmail(userData.email);
+        setShowEmailConfirmation(true);
+        toast({
+          title: "Check your email!",
+          description: "Please check your email to verify your account before logging in.",
+        });
+      }
+    } catch (error: any) {
+      toast({
+        title: "Signup failed",
+        description: error.message || "An unexpected error occurred",
+        variant: "destructive"
+      });
+    } finally {
       setIsLoading(false);
-      navigate('/dashboard');
-    }, 1000);
+    }
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,22 +74,79 @@ const Auth = () => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    // Simulate API call
-    setTimeout(() => {
-      const userData = {
-        name: "John Doe",
-        email: email,
-        phone: "+91 98765 43210",
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      toast({
-        title: "Login successful!",
-        description: "Welcome back to GOHUBS.",
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
+
+      if (error) {
+        if (error.message.includes('Email not confirmed')) {
+          toast({
+            title: "Email not verified",
+            description: "Please check your email and click the verification link before logging in.",
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Login failed",
+            description: error.message,
+            variant: "destructive"
+          });
+        }
+      } else {
+        toast({
+          title: "Login successful!",
+          description: "Welcome back to GOHUBS.",
+        });
+        navigate('/dashboard');
+      }
+    } catch (error: any) {
+      toast({
+        title: "Login failed",
+        description: error.message || "An unexpected error occurred",
+        variant: "destructive"
+      });
+    } finally {
       setIsLoading(false);
-      navigate('/dashboard');
-    }, 1000);
+    }
   };
+
+  if (showEmailConfirmation) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+        <Navbar />
+        
+        <div className="flex items-center justify-center min-h-[calc(100vh-64px)] px-4 py-8">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl text-green-600">Check Your Email</CardTitle>
+              <CardDescription>
+                We've sent a verification link to {userEmail}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center space-y-4">
+              <div className="p-6 bg-green-50 rounded-lg">
+                <p className="text-sm text-gray-600 mb-4">
+                  Please check your email and click the verification link to complete your account setup.
+                </p>
+                <p className="text-xs text-gray-500">
+                  Don't see the email? Check your spam folder or contact support.
+                </p>
+              </div>
+              <Button 
+                variant="outline" 
+                onClick={() => setShowEmailConfirmation(false)}
+                className="w-full"
+              >
+                Back to Login
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
