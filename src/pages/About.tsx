@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -33,33 +34,6 @@ const About = () => {
       name: "Kusuma Dadi",
       role: "Aspiring student of AI/ML",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
-    }
-  ];
-
-  const surveyPhotos = [
-    {
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      caption: "Community Interview"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80",
-      caption: "Health Camp Observation"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-      caption: "Village Health Assessment"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-      caption: "Healthcare Documentation"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1551601651-bc60e51d6ba2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      caption: "Community Outreach"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80",
-      caption: "Field Research"
     }
   ];
 
@@ -105,34 +79,35 @@ const About = () => {
           </div>
         </section>
 
-        {/* Survey Gallery Section */}
+        {/* Survey Section */}
         <section>
           <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
             From the Ground – Insights from Our Village Survey
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {surveyPhotos.map((photo, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={photo.image}
-                    alt={photo.caption}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <p className="text-center font-medium text-gray-700">
-                    {photo.caption}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex flex-col lg:flex-row items-center gap-8 mb-8">
+            {/* Large Survey Image */}
+            <div className="w-full lg:w-2/3">
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="Village Survey - Community Interaction"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+            
+            {/* Survey Description */}
+            <div className="w-full lg:w-1/3">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                As part of our mission to improve rural healthcare, the GOHUBS team conducted a ground-level survey across remote villages in Visakhapatnam. We interacted with local communities to understand their health challenges, access gaps, and emergency needs. This real-time insight helped shape the services we now offer through GOHUBS.
+              </p>
+            </div>
           </div>
           
           <div className="text-center">
             <p className="text-lg text-gray-700 italic font-medium">
-              "Our journey began with listening – these images capture the real stories that shaped GOHUBS."
+              "Our journey began with listening – these insights capture the real stories that shaped GOHUBS."
             </p>
           </div>
         </section>
