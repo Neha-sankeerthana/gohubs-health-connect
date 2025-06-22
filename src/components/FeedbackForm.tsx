@@ -75,7 +75,7 @@ const FeedbackForm = ({ isOpen, onClose }: FeedbackFormProps) => {
       toast({
         title: "Thank you for your feedback!",
         description: data.email 
-          ? "Your message has been submitted successfully. Check your email for confirmation." 
+          ? "Your message has been submitted successfully. A confirmation email has been sent to you." 
           : "Your message has been submitted successfully.",
       });
 

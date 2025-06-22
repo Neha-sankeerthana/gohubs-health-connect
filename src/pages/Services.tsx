@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
+import FeedbackForm from '@/components/FeedbackForm';
 import OnlineConsultation from '@/components/services/OnlineConsultation';
 import AmbulanceService from '@/components/services/AmbulanceService';
 import NearestHospitals from '@/components/services/NearestHospitals';
@@ -24,6 +24,7 @@ import {
 
 const Services = () => {
   const [activeService, setActiveService] = useState<string | null>(null);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const services = [
     {
@@ -152,12 +153,19 @@ const Services = () => {
                 Sign Up Now
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-blue-900"
+              onClick={() => setIsFeedbackOpen(true)}
+            >
               Contact Us
             </Button>
           </div>
         </div>
       </section>
+
+      <FeedbackForm isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
     </div>
   );
 };
