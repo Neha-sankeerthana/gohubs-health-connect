@@ -8,29 +8,29 @@ const HealthAwareness = () => {
 
   const videoCategories = {
     maternity: [
-      { title: "Prenatal Care Essentials", videoId: "dQw4w9WgXcQ", description: "Complete guide to prenatal care" },
-      { title: "Healthy Pregnancy Tips", videoId: "dQw4w9WgXcQ", description: "Tips for a healthy pregnancy journey" },
-      { title: "Postpartum Care", videoId: "dQw4w9WgXcQ", description: "Essential postpartum care guidelines" }
+      { title: "Prenatal Care Essentials", videoId: "YQaYWWh9v3U", description: "Complete guide to prenatal care and pregnancy health" },
+      { title: "Healthy Pregnancy Tips", videoId: "t6nOZdYTspY", description: "Essential tips for a healthy pregnancy journey" },
+      { title: "Postpartum Care Guide", videoId: "sJ4fFjWyYJE", description: "Essential postpartum care and recovery guidelines" }
     ],
     diet: [
-      { title: "Balanced Diet Planning", videoId: "dQw4w9WgXcQ", description: "How to plan a balanced diet" },
-      { title: "Nutrition for Different Ages", videoId: "dQw4w9WgXcQ", description: "Age-specific nutritional needs" },
-      { title: "Healthy Cooking Methods", videoId: "dQw4w9WgXcQ", description: "Healthy ways to prepare food" }
+      { title: "Balanced Diet Planning", videoId: "2Jh3kCDbhBM", description: "How to plan a nutritious balanced diet for optimal health" },
+      { title: "Healthy Eating Habits", videoId: "bi7GB5KLb_Y", description: "Building sustainable healthy eating habits for life" },
+      { title: "Nutrition Basics Explained", videoId: "QPJmvZDbG-g", description: "Understanding essential nutrients and their benefits" }
     ],
     hygiene: [
-      { title: "Personal Hygiene Basics", videoId: "dQw4w9WgXcQ", description: "Essential personal hygiene practices" },
-      { title: "Hand Washing Techniques", videoId: "dQw4w9WgXcQ", description: "Proper hand washing methods" },
-      { title: "Home Sanitation", videoId: "dQw4w9WgXcQ", description: "Keeping your home clean and safe" }
+      { title: "Hand Hygiene Importance", videoId: "3PmVJQUCm4E", description: "Proper hand washing techniques and importance" },
+      { title: "Personal Hygiene Essentials", videoId: "nt7SLvQhOBo", description: "Daily personal hygiene practices for good health" },
+      { title: "Home Sanitation Guide", videoId: "sjDuwc9KBps", description: "Keeping your home clean and germ-free" }
     ],
     exercise: [
-      { title: "Daily Exercise Routines", videoId: "dQw4w9WgXcQ", description: "Simple daily exercises for everyone" },
-      { title: "Yoga for Beginners", videoId: "dQw4w9WgXcQ", description: "Basic yoga poses and benefits" },
-      { title: "Cardio Workouts at Home", videoId: "dQw4w9WgXcQ", description: "Effective home cardio exercises" }
+      { title: "Daily Exercise Benefits", videoId: "2Vj_9CgEa5M", description: "Benefits of regular physical activity and exercise" },
+      { title: "Home Workout Routines", videoId: "UBMk30rjy0o", description: "Simple exercises you can do at home daily" },
+      { title: "Stretching for Flexibility", videoId: "L_xrDAtykMI", description: "Basic stretching exercises for better flexibility" }
     ],
     general: [
-      { title: "Preventive Healthcare", videoId: "dQw4w9WgXcQ", description: "Preventing common health issues" },
-      { title: "Mental Health Awareness", videoId: "dQw4w9WgXcQ", description: "Understanding mental health" },
-      { title: "First Aid Basics", videoId: "dQw4w9WgXcQ", description: "Essential first aid knowledge" }
+      { title: "Mental Health Awareness", videoId: "3QIfkeA6HBY", description: "Understanding and maintaining good mental health" },
+      { title: "First Aid Basics", videoId: "bGqyHh9dTaU", description: "Essential first aid skills everyone should know" },
+      { title: "Preventive Healthcare Tips", videoId: "l4EBQZGCl-w", description: "Simple steps to prevent common health problems" }
     ]
   };
 
@@ -46,7 +46,7 @@ const HealthAwareness = () => {
     <Card>
       <CardHeader>
         <CardTitle>Health Awareness</CardTitle>
-        <CardDescription>Educational content for better health</CardDescription>
+        <CardDescription>Educational content for better health and wellness</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2 mb-6">
@@ -65,8 +65,8 @@ const HealthAwareness = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {videoCategories[activeCategory as keyof typeof videoCategories].map((video, index) => (
-            <div key={index} className="border rounded-lg overflow-hidden">
-              <div className="aspect-video bg-gray-200 flex items-center justify-center">
+            <div key={index} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-video bg-gray-200">
                 <iframe
                   width="100%"
                   height="200"
@@ -75,11 +75,12 @@ const HealthAwareness = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  className="w-full h-full"
                 ></iframe>
               </div>
               <div className="p-4">
-                <h4 className="font-semibold mb-2">{video.title}</h4>
-                <p className="text-sm text-gray-600">{video.description}</p>
+                <h4 className="font-semibold mb-2 text-gray-800">{video.title}</h4>
+                <p className="text-sm text-gray-600 leading-relaxed">{video.description}</p>
               </div>
             </div>
           ))}
