@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -99,8 +97,8 @@ const About = () => {
             <div className="w-full lg:w-2/3">
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                  alt="Village Survey - Community Interaction"
+                  src="/lovable-uploads/662c6471-6451-4a1d-ba9a-0dc46274a3c0.png"
+                  alt="GOHUBS Team Village Survey - Community Interaction in Kondakarla, Andhra Pradesh"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -160,4 +158,3 @@ const About = () => {
 };
 
 export default About;
-
