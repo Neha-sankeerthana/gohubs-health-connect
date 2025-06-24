@@ -55,7 +55,7 @@ const FeedbackForm = ({ isOpen, onClose }: FeedbackFormProps) => {
       // Send confirmation email if email was provided
       if (data.email) {
         try {
-          const { error: emailError } = await supabase.functions.invoke('send-feedback-email', {
+          const { data: emailResponse, error: emailError } = await supabase.functions.invoke('send-feedback-email', {
             body: {
               name: data.user_name,
               email: data.email
@@ -63,21 +63,46 @@ const FeedbackForm = ({ isOpen, onClose }: FeedbackFormProps) => {
           });
 
           if (emailError) {
-            console.error('Email sending failed:', emailError);
-            // Don't throw error for email failure - feedback was still saved
+            console.error('Email function error:', emailError);
+            // Don't throw error - feedback was still saved
+            toast({
+              title: "Feedback Submitted Successfully!",
+              description: "Your message has been saved. Email confirmation is temporarily unavailable.",
+            });
+          } else if (emailResponse?.warning) {
+            // Domain verification warning
+            toast({
+              title: "Feedback Submitted Successfully!",
+              description: "Your message has been saved. Email confirmation is temporarily unavailable due to domain verification.",
+            });
+          } else if (emailResponse?.success) {
+            // Email sent successfully
+            toast({
+              title: "Thank you for your feedback!",
+              description: "Your message has been submitted successfully and a confirmation email has been sent.",
+            });
+          } else {
+            // Email failed but feedback saved
+            toast({
+              title: "Feedback Submitted Successfully!",
+              description: "Your message has been saved. Email confirmation could not be sent at this time.",
+            });
           }
         } catch (emailError) {
           console.error('Email sending failed:', emailError);
-          // Don't throw error for email failure - feedback was still saved
+          // Don't throw error - feedback was still saved
+          toast({
+            title: "Feedback Submitted Successfully!",
+            description: "Your message has been saved. Email confirmation is temporarily unavailable.",
+          });
         }
+      } else {
+        // No email provided
+        toast({
+          title: "Thank you for your feedback!",
+          description: "Your message has been submitted successfully.",
+        });
       }
-
-      toast({
-        title: "Thank you for your feedback!",
-        description: data.email 
-          ? "Your message has been submitted successfully. A confirmation email has been sent to you." 
-          : "Your message has been submitted successfully.",
-      });
 
       form.reset();
       onClose();
