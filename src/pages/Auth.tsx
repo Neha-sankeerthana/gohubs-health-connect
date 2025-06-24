@@ -33,8 +33,20 @@ const Auth = () => {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
       phone: formData.get('phone') as string,
+      age: parseInt(formData.get('age') as string),
       password: formData.get('password') as string,
     };
+
+    // Validate age
+    if (userData.age < 15) {
+      toast({
+        title: "Age requirement not met",
+        description: "You must be at least 15 years old to create an account.",
+        variant: "destructive"
+      });
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -45,6 +57,7 @@ const Auth = () => {
           data: {
             full_name: userData.name,
             phone: userData.phone,
+            age: userData.age.toString(),
           }
         }
       });
@@ -220,7 +233,7 @@ const Auth = () => {
                 <CardHeader>
                   <CardTitle>Create Account</CardTitle>
                   <CardDescription>
-                    Sign up to access all GOHUBS services
+                    Sign up to access all GOHUBS services (Age 15+)
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -252,6 +265,18 @@ const Auth = () => {
                         name="phone"
                         type="tel"
                         placeholder="Enter your phone number"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-age">Age</Label>
+                      <Input
+                        id="signup-age"
+                        name="age"
+                        type="number"
+                        min="15"
+                        max="120"
+                        placeholder="Enter your age (15+)"
                         required
                       />
                     </div>
