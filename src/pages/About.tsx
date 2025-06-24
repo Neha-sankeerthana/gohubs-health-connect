@@ -13,31 +13,31 @@ const About = () => {
       name: "Neha Sankeerthana Tadi",
       role: "AI/ML Student & Healthcare Innovation Researcher",
       description: "Passionate about leveraging artificial intelligence to solve healthcare accessibility challenges in rural communities. Specializes in machine learning algorithms for predictive health analytics.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b332c2c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+      image: "/lovable-uploads/c3edfc8a-f186-4dcd-8115-ccb92c5e0cd3.png"
     },
     {
       name: "Kushbu Yadav Ommi",
       role: "AI/ML Student & Digital Health Solutions Developer",
       description: "Focused on developing user-friendly digital health platforms and telemedicine solutions. Experienced in creating accessible technology interfaces for diverse user bases.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      image: "/lovable-uploads/854cbdfe-2ad3-4727-a519-80581eeed884.png"
     },
     {
       name: "Samatha Teddu",
       role: "AI/ML Student & Community Health Data Analyst",
       description: "Dedicated to analyzing community health patterns and developing data-driven solutions for rural healthcare delivery. Expert in health informatics and population health management.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      image: "/lovable-uploads/cdfc5dcc-523b-4c98-aa9d-50ba7fe07000.png"
     },
     {
       name: "Navya Rayala",
       role: "AI/ML Student & Healthcare Technology Integrator",
       description: "Specializes in integrating emerging technologies with traditional healthcare systems. Focused on creating seamless connections between patients, providers, and health resources.",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1061&q=80"
+      image: "/lovable-uploads/e33468c6-48a3-456b-9248-fb26548c691a.png"
     },
     {
       name: "Kusuma Dadi",
       role: "AI/ML Student & Rural Health Advocacy Leader",
       description: "Committed to bridging the healthcare gap in underserved communities through innovative technology solutions. Leads community outreach and user experience research initiatives.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+      image: "/lovable-uploads/c660870a-e0eb-4c8d-9708-6a8478725286.png"
     }
   ];
 
